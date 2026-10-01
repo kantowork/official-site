@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プライバシーポリシー | KANTO WORK LLC</title>
+  <meta name="description" content="KANTO WORK LLC のプライバシーポリシー（Privacy Policy）です。当組織の個人情報保護方針、E2EE暗号化、データ管理についてご案内します。">
+  <meta name="author" content="KANTO WORK LLC">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kanto.work/privacy.html">
+  <meta property="og:title" content="プライバシーポリシー | KANTO WORK LLC">
+  <meta property="og:description" content="KANTO WORK LLC のプライバシーポリシーです。">
+
+  <link rel="icon" type="image/png" sizes="500x500" href="icon/favicon-500x500.png">
+  <link rel="apple-touch-icon" href="icon/favicon-500x500.png">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/site.js"></script>
+  <script src="js/switch-theme.js"></script>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav class="container">
+      <ul>
+        <li>
+          <a href="index.html" class="contrast brand-link">
+            <img src="icon/favicon-500x500.png" alt="KANTO WORK LLC" width="28" height="28" class="brand-logo">
+            <strong>KANTO WORK LLC</strong>
+          </a>
+        </li>
+      </ul>
+      <ul>
+        <li><a href="index.html">Topへ戻る</a></li>
+        <li>
+          <a href="#" id="theme-toggle" class="contrast theme-toggle" aria-label="テーマ切り替え" title="テーマ切り替え">☀️</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container privacy-container">
+    <article id="content" class="privacy-content" aria-busy="true">
+      <p id="loading-notice" aria-busy="true" class="privacy-loading">プライバシーポリシーを読み込んでいます...</p>
+    </article>
+  </main>
+
+  <footer class="container site-footer">
+    <small>© <span id="copyright-year">2026</span> KANTO WORK LLC. All rights reserved.</small>
+  </footer>
+
+  <script>
+    (function () {
+      const contentEl = document.getElementById("content");
+      function showFallback() {
+        if (!contentEl) return;
+        contentEl.innerHTML = `
+          <div class="privacy-fallback">
+            <p><a href="./privacy_policy.md">こちら</a>をクリックしてプライバシーポリシーを表示してください。</p>
+          </div>
+        `;
+        contentEl.removeAttribute("aria-busy");
+      }
+
+      if (typeof marked !== "undefined" && contentEl) {
+        marked.setOptions({
+          gfm: true,
+          breaks: true
+        });
+
+        fetch("./privacy_policy.md", { cache: "no-cache" })
+          .then(function (res) {
+            if (!res.ok) {
+              throw new Error("HTTP error " + res.status);
+            }
+            return res.text();
+          })
+          .then(function (mdText) {
+            contentEl.innerHTML = marked.parse(mdText);
+            contentEl.removeAttribute("aria-busy");
+          })
+          .catch(function (err) {
+            console.error("Markdown load failed:", err);
+            showFallback();
+          });
+      } else if (contentEl) {
+        showFallback();
+      }
+    })();
+  </script>
+</body>
+
+</html>

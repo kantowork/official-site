@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#002D5A" flood-opacity=".25"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" fill="#0096E2"/>
+
+  <path fill="#fff" filter="url(#shadow)" d="
+    M 154 130 H 358
+    A 60 72 0 0 1 418 202 V 304
+    A 60 72 0 0 1 358 376 H 240
+    L 173 422 C 167 426 160 422 160 414 V 376 H 154
+    A 60 72 0 0 1 94 304 V 202
+    A 60 72 0 0 1 154 130 Z"/>
+</svg>
+
