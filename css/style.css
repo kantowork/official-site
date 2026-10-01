@@ -1,0 +1,265 @@
+/* Typography Root Reset (Pico CSS default enlargement prevention) */
+:root {
+  --pico-font-size: 100%;
+}
+
+@media (min-width: 576px) {
+  :root {
+    --pico-font-size: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --pico-font-size: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --pico-font-size: 100%;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --pico-font-size: 100%;
+  }
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --pico-font-size: 100%;
+  }
+}
+
+/* Sticky Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--pico-background-color);
+  border-bottom: 1px solid var(--pico-muted-border-color);
+  transition: box-shadow 0.25s ease;
+}
+
+.site-header nav ul li {
+  transition: padding 0.25s ease;
+}
+
+/* Brand & Navigation */
+.brand-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-logo {
+  border-radius: var(--pico-border-radius);
+  transition: width 0.25s ease, height 0.25s ease;
+}
+
+.brand-link strong {
+  transition: font-size 0.25s ease;
+}
+
+.theme-toggle {
+  text-decoration: none;
+  font-size: 1.25rem;
+  transition: font-size 0.25s ease;
+}
+
+/* Scrolled (Slim Header) */
+.site-header.scrolled {
+  --pico-nav-element-spacing-vertical: 0.35rem;
+  --pico-nav-link-spacing-vertical: 0.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.site-header.scrolled .brand-logo {
+  width: 22px;
+  height: 22px;
+}
+
+.site-header.scrolled .brand-link strong {
+  font-size: 0.95rem;
+}
+
+.site-header.scrolled nav ul li a {
+  font-size: 0.92rem;
+}
+
+.site-header.scrolled .theme-toggle {
+  font-size: 1.1rem;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+
+.hero-section h1 {
+  margin-bottom: 1.25rem;
+}
+
+.hero-section p {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Product Cards */
+article p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.card-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-icon {
+  border-radius: var(--pico-border-radius);
+  flex-shrink: 0;
+}
+
+.card-icon-emoji {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.card-subtitle {
+  margin: 0.5rem 0 0;
+}
+
+/* Badges & Tags */
+mark {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+  vertical-align: middle;
+}
+
+mark.secondary {
+  background-color: transparent;
+  border: 1px solid var(--pico-muted-border-color);
+  color: var(--pico-muted-color);
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--pico-border-radius);
+  background-color: color-mix(in srgb, var(--pico-primary) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--pico-primary) 35%, transparent);
+  color: var(--pico-primary);
+  line-height: 1.4;
+}
+
+.tag-badge.muted {
+  background-color: var(--pico-card-sectioning-background-color);
+  border-color: var(--pico-muted-border-color);
+  color: var(--pico-muted-color);
+  font-weight: normal;
+}
+
+/* Privacy Page */
+.privacy-container {
+  max-width: 860px;
+}
+
+.privacy-content {
+  font-size: 0.75rem;
+  line-height: 1.65;
+}
+
+.privacy-content h1 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.privacy-content h2 {
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--pico-muted-border-color);
+}
+
+.privacy-content h3 {
+  font-size: 0.85rem;
+  margin-top: 1.15rem;
+  margin-bottom: 0.35rem;
+}
+
+.privacy-content h4 {
+  font-size: 0.78rem;
+  margin-top: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.privacy-content p,
+.privacy-content li,
+.privacy-content td,
+.privacy-content th {
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.privacy-content ol,
+.privacy-content ul {
+  padding-left: 1.15rem;
+  margin-left: 0;
+  margin-bottom: 0.75rem;
+}
+
+.privacy-content ol li,
+.privacy-content ul li {
+  padding-left: 0.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.privacy-content hr {
+  margin: 1.25rem 0;
+  border-color: var(--pico-muted-border-color);
+}
+
+.privacy-loading {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.privacy-fallback {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 2rem 0 3rem;
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- Circular Badge Background -->
+  <circle cx="250" cy="250" r="248" fill="#FFFFFF"/>
+  <!-- Outer Ring -->
+  <circle cx="250" cy="250" r="240" fill="none" stroke="#00875E" stroke-width="4"/>
+  <!-- Center Accent -->
+  <line x1="110" y1="250" x2="390" y2="250" stroke="#00875E" stroke-width="4" stroke-linecap="round" stroke-opacity="0.75"/>
+  <circle cx="250" cy="250" r="7" fill="#00875E"/>
+  <!-- Text Shapes (Arc-approximated O & R, Integer grid, fill-rule=evenodd) -->
+  <g fill="#00875E" fill-rule="evenodd">
+    <!-- KANTO -->
+    <path d="M 59 132 H 80 V 172 L 105 132 H 131 L 97 179 L 133 228 H 106 L 80 188 V 228 H 59 Z" />
+    <path d="M 139 228 L 164 132 H 188 L 213 228 H 191 L 187 206 H 163 L 158 228 Z M 168 188 H 182 L 175 157 Z" />
+    <path d="M 224 132 H 244 L 274 190 V 132 H 293 V 228 H 273 L 243 170 V 228 H 224 Z" />
+    <path d="M 304 132 H 372 V 152 H 348 V 228 H 328 V 152 H 304 Z" />
+    <path d="M 412 132 A 37 48 0 0 1 412 228 A 37 48 0 0 1 412 132 Z M 412 152 A 17 28 0 0 0 412 208 A 17 28 0 0 0 412 152 Z" />
+    <!-- WORK -->
+    <path d="M 64 272 H 85 L 101 339 L 116 272 H 133 L 148 339 L 164 272 H 185 L 161 368 H 139 L 124 308 L 110 368 H 88 Z" />
+    <path d="M 224 272 A 37 48 0 0 1 224 368 A 37 48 0 0 1 224 272 Z M 224 292 A 17 28 0 0 0 224 348 A 17 28 0 0 0 224 292 Z" />
+    <path d="M 271 272 H 314 A 28 27 0 0 1 320 325 L 344 368 H 320 L 300 328 H 292 V 368 H 271 Z M 292 291 V 310 H 311 A 13 10 0 0 0 311 291 Z" />
+    <path d="M 354 272 H 376 V 312 L 400 272 H 426 L 393 319 L 428 368 H 402 L 376 328 V 368 H 354 Z" />
+  </g>
+</svg>
