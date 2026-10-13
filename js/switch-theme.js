@@ -5,79 +5,99 @@
  * Adapted for Pico CSS theme toggling
  */
 
-const BUTTON_TARGET = "#theme-toggle";
-const ROOT_ATTRIBUTE = "data-theme";
-const LOCAL_STORAGE_KEY = "kantoWorkColorScheme";
+(function () {
+  "use strict";
 
-const switchTheme = {
-  // Config
-  _scheme: "dark",
+  const BUTTON_TARGET = "#theme-toggle";
+  const ROOT_ATTRIBUTE = "data-theme";
+  const LOCAL_STORAGE_KEY = "kantoWorkColorScheme";
 
-  // Init
-  init() {
-    this.scheme = this.schemeFromLocalStorage;
-    const button = document.querySelector(BUTTON_TARGET);
-    if (!button) return;
+  const switchTheme = {
+    // Config: Dark theme by default
+    _scheme: "dark",
 
-    this.updateButton(button);
+    // Initialize theme immediately in <head> to prevent FOUC
+    initTheme() {
+      this.scheme = this.schemeFromLocalStorage;
+    },
 
-    button.addEventListener(
-      "click",
-      (event) => {
-        event.preventDefault();
-        const currentScheme = this.scheme;
-        this.scheme = currentScheme === "dark" ? "light" : "dark";
-        this.updateButton(button);
-      },
-      false
-    );
-  },
+    // Initialize toggle button and attach click event listener after DOM is ready
+    initButton() {
+      const button = document.querySelector(BUTTON_TARGET);
+      if (!button) return;
 
-  // Get color scheme from local storage
-  get schemeFromLocalStorage() {
-    return window.localStorage?.getItem(LOCAL_STORAGE_KEY) ?? this._scheme;
-  },
+      this.updateButton(button);
 
-  // Preferred color scheme
-  get preferredColorScheme() {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  },
+      button.addEventListener(
+        "click",
+        (event) => {
+          event.preventDefault();
+          const currentScheme = this.scheme;
+          this.scheme = currentScheme === "dark" ? "light" : "dark";
+          this.updateButton(button);
+        },
+        false
+      );
+    },
 
-  // Update button icon and accessible title
-  updateButton(button) {
-    if (!button) return;
-    const isDark = this.scheme === "dark";
-    button.textContent = isDark ? "☀️" : "🌙";
-    button.setAttribute("aria-label", isDark ? "ライトモードに切り替え" : "ダークモードに切り替え");
-    button.setAttribute("title", isDark ? "ライトモードに切り替え" : "ダークモードに切り替え");
-  },
+    // Get color scheme from local storage
+    get schemeFromLocalStorage() {
+      try {
+        return window.localStorage?.getItem(LOCAL_STORAGE_KEY) ?? this._scheme;
+      } catch {
+        return this._scheme;
+      }
+    },
 
-  // Set scheme
-  set scheme(scheme) {
-    if (scheme === "auto") {
-      this._scheme = this.preferredColorScheme;
-    } else if (scheme === "dark" || scheme === "light") {
-      this._scheme = scheme;
-    }
-    this.applyScheme();
-    this.schemeToLocalStorage();
-  },
+    // Preferred color scheme
+    get preferredColorScheme() {
+      return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    },
 
-  // Get scheme
-  get scheme() {
-    return this._scheme;
-  },
+    // Update button icon and accessible title
+    updateButton(button) {
+      if (!button) return;
+      const isDark = this.scheme === "dark";
+      button.textContent = isDark ? "☀️" : "🌙";
+      button.setAttribute("aria-label", isDark ? "ライトモードに切り替え" : "ダークモードに切り替え");
+      button.setAttribute("title", isDark ? "ライトモードに切り替え" : "ダークモードに切り替え");
+    },
 
-  // Apply scheme
-  applyScheme() {
-    document.querySelector("html")?.setAttribute(ROOT_ATTRIBUTE, this.scheme);
-  },
+    // Set and apply scheme
+    set scheme(scheme) {
+      if (scheme === "auto") {
+        this._scheme = this.preferredColorScheme;
+      } else if (scheme === "dark" || scheme === "light") {
+        this._scheme = scheme;
+      }
+      this.applyScheme();
+      this.schemeToLocalStorage();
+    },
 
-  // Store scheme to local storage
-  schemeToLocalStorage() {
-    window.localStorage?.setItem(LOCAL_STORAGE_KEY, this.scheme);
-  },
-};
+    get scheme() {
+      return this._scheme;
+    },
 
-// Init
-switchTheme.init();
+    // Apply scheme to <html> element
+    applyScheme() {
+      document.documentElement.setAttribute(ROOT_ATTRIBUTE, this.scheme);
+    },
+
+    // Store scheme to local storage
+    schemeToLocalStorage() {
+      try {
+        window.localStorage?.setItem(LOCAL_STORAGE_KEY, this.scheme);
+      } catch {
+        // Ignore if storage access is restricted (e.g., private browsing)
+      }
+    },
+  };
+
+  // 1. Apply theme immediately in <head> to prevent flash of unstyled content (FOUC)
+  switchTheme.initTheme();
+
+  // 2. Initialize toggle button once DOM is loaded
+  document.addEventListener("DOMContentLoaded", function () {
+    switchTheme.initButton();
+  });
+})();
