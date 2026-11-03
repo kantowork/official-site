@@ -51,10 +51,10 @@ Apple Developer Programで組織（Organization）として登録する場合、
    > IRS（内国歳入庁）から米国の事業者番号を取得（銀行口座やD-U-N-Sに必須）
    > ↓
 3. **D-U-N-S Number 取得**
-   > Dun & Bradstreet（D&B）へ申請し、世界標準の企業識別コードを取得
+   > Dun & Bradstreet（D&B）へ申請し、世界標準の企業識別コードを取得.
    > ↓
 4. **Apple Developer Program 組織登録**
-   > 法人名とD-U-N-S Numberを使って組織名義で登録完了
+   > 法人名とD-U-N-S Numberを使って組織名義で登録完了.
    > ↓
 5. **報酬受け取り口座の作成**
    > アプリの売上やサブスクリプション収益を受け取るための銀行口座を開設
