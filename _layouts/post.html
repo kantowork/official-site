@@ -5,20 +5,74 @@ layout: default
 <article class="blog-article">
   <header>
     <h1>{{ page.title | escape }}</h1>
-    {% if page.date %}
-      <p class="blog-meta">
-        <time datetime="{{ page.date | date_to_xmlschema }}">
-          📅 {{ page.date | date: "%Y年%m月%d日" }}
-        </time>
-      </p>
-    {% endif %}
+    <div style="display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+      {% if page.date %}
+        <p class="blog-meta" style="margin-bottom: 0;">
+          <time datetime="{{ page.date | date_to_xmlschema }}">
+            📅 {{ page.date | date: "%Y年%m月%d日" }}
+          </time>
+        </p>
+      {% endif %}
+      {% if page.tags %}
+        <div class="post-tags" style="display: inline-flex; gap: 0.3rem; flex-wrap: wrap;">
+          {% for tag in page.tags %}
+            <a href="/blog/#{{ tag }}" style="font-size: 0.8rem; padding: 0.15rem 0.5rem; border-radius: 0.8rem; background-color: var(--pico-card-background-color); border: 1px solid var(--pico-muted-border-color); color: var(--pico-muted-color); text-decoration: none;">#{{ tag }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
   </header>
 
   <div class="blog-content">
     {{ content }}
   </div>
 
-  <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--pico-muted-border-color);">
-    <a href="/blog/" role="button" class="secondary outline">← ブログ一覧へ戻る</a>
+  <!-- 前後の記事へのリンク・一覧へ戻る -->
+  {% assign blog_posts = site.pages | sort: "path" %}
+  {% assign current_idx = -1 %}
+  {% assign all_posts = "" | split: "," %}
+
+  {% for p in blog_posts %}
+    {% if p.path contains 'blog/' and p.path != 'blog/index.html' and p.title %}
+      {% assign all_posts = all_posts | push: p %}
+    {% endif %}
+  {% endfor %}
+
+  {% for p in all_posts %}
+    {% if p.url == page.url %}
+      {% assign current_idx = forloop.index0 %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign prev_idx = current_idx | minus: 1 %}
+  {% assign next_idx = current_idx | plus: 1 %}
+
+  <footer style="margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--pico-muted-border-color);">
+    <nav style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+      <div>
+        {% if prev_idx >= 0 %}
+          {% assign prev_post = all_posts[prev_idx] %}
+          <a href="{{ prev_post.url | relative_url }}" class="secondary" style="display: inline-flex; flex-direction: column; text-decoration: none;">
+            <small style="color: var(--pico-muted-color);">← 前の記事</small>
+            <strong>{{ prev_post.title | truncate: 25 | escape }}</strong>
+          </a>
+        {% endif %}
+      </div>
+
+      <div style="text-align: right; margin-left: auto;">
+        {% if next_idx < all_posts.size %}
+          {% assign next_post = all_posts[next_idx] %}
+          <a href="{{ next_post.url | relative_url }}" class="secondary" style="display: inline-flex; flex-direction: column; align-items: flex-end; text-decoration: none;">
+            <small style="color: var(--pico-muted-color);">次の記事 →</small>
+            <strong>{{ next_post.title | truncate: 25 | escape }}</strong>
+          </a>
+        {% endif %}
+      </div>
+    </nav>
+
+    <div style="text-align: center;">
+      <a href="/blog/" role="button" class="secondary outline">一覧へ戻る</a>
+    </div>
   </footer>
 </article>

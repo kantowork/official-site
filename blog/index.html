@@ -10,12 +10,41 @@ permalink: /blog/
     <p>KANTO WORK LLC の開発状況や技術・お知らせを発信しています。</p>
   </hgroup>
 
+  <!-- タグフィルター -->
+  <div class="tag-filter-container" style="margin-bottom: 2rem;">
+    <span style="font-size: 0.9rem; color: var(--pico-muted-color); margin-right: 0.5rem;">タグ絞り込み:</span>
+    <button type="button" class="tag-badge active" data-tag="all" style="cursor: pointer; border: 1px solid var(--pico-primary); background: var(--pico-primary); color: var(--pico-primary-inverse); padding: 0.2rem 0.6rem; border-radius: 1rem; font-size: 0.85rem; margin-right: 0.3rem; margin-bottom: 0.4rem;">すべて</button>
+    {% assign all_tags = "" | split: "," %}
+    {% for post in site.pages %}
+      {% if post.path contains 'blog/' and post.path != 'blog/index.html' and post.tags %}
+        {% for tag in post.tags %}
+          {% unless all_tags contains tag %}
+            {% assign all_tags = all_tags | push: tag %}
+          {% endunless %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+    {% for tag in all_tags %}
+      <button type="button" class="tag-badge outline" data-tag="{{ tag }}" style="cursor: pointer; border: 1px solid var(--pico-muted-border-color); background: transparent; color: var(--pico-color); padding: 0.2rem 0.6rem; border-radius: 1rem; font-size: 0.85rem; margin-right: 0.3rem; margin-bottom: 0.4rem;">#{{ tag }}</button>
+    {% endfor %}
+  </div>
+
+  <!-- 記事一覧 -->
   <ul class="blog-post-list">
     {% assign blog_posts = site.pages | sort: "path" | reverse %}
     {% for post in blog_posts %}
       {% if post.path contains 'blog/' and post.path != 'blog/index.html' and post.title %}
-        <li class="blog-post-item">
-          <small class="blog-meta">📅 {{ post.date | date: "%Y年%m月%d日" }}</small>
+        <li class="blog-post-item" data-tags="{{ post.tags | join: ',' }}">
+          <div style="display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.25rem;">
+            <small class="blog-meta" style="margin-bottom: 0;">📅 {{ post.date | date: "%Y年%m月%d日" }}</small>
+            {% if post.tags %}
+              <div class="post-tags" style="display: inline-flex; gap: 0.3rem; flex-wrap: wrap;">
+                {% for tag in post.tags %}
+                  <span style="font-size: 0.75rem; padding: 0.1rem 0.45rem; border-radius: 0.8rem; background-color: var(--pico-card-background-color); border: 1px solid var(--pico-muted-border-color); color: var(--pico-muted-color);">#{{ tag }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
           <h3>
             <a href="{{ post.url | relative_url }}">
               {{ post.title | escape }}
@@ -28,4 +57,68 @@ permalink: /blog/
       {% endif %}
     {% endfor %}
   </ul>
+  <p id="no-posts-msg" style="display: none; color: var(--pico-muted-color); text-align: center; margin-top: 2rem;">該当する記事がありません。</p>
 </section>
+
+<script>
+  (function () {
+    const filterButtons = document.querySelectorAll('.tag-filter-container button');
+    const postItems = document.querySelectorAll('.blog-post-item');
+    const noPostsMsg = document.getElementById('no-posts-msg');
+
+    function applyFilter(selectedTag) {
+      let visibleCount = 0;
+      filterButtons.forEach(btn => {
+        const isSelected = btn.dataset.tag === selectedTag;
+        if (isSelected) {
+          btn.style.background = 'var(--pico-primary)';
+          btn.style.borderColor = 'var(--pico-primary)';
+          btn.style.color = 'var(--pico-primary-inverse)';
+        } else {
+          btn.style.background = 'transparent';
+          btn.style.borderColor = 'var(--pico-muted-border-color)';
+          btn.style.color = 'var(--pico-color)';
+        }
+      });
+
+      postItems.forEach(item => {
+        const itemTags = (item.dataset.tags || '').split(',');
+        if (selectedTag === 'all' || itemTags.includes(selectedTag)) {
+          item.style.display = '';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      if (noPostsMsg) {
+        noPostsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    }
+
+    // URLハッシュからのタグ判定 (例: /blog/#LLC)
+    function checkHashTag() {
+      const hash = decodeURIComponent(window.location.hash.replace('#', ''));
+      if (hash) {
+        applyFilter(hash);
+      } else {
+        applyFilter('all');
+      }
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tag = btn.dataset.tag;
+        if (tag === 'all') {
+          history.pushState(null, '', window.location.pathname);
+          applyFilter('all');
+        } else {
+          window.location.hash = encodeURIComponent(tag);
+        }
+      });
+    });
+
+    window.addEventListener('hashchange', checkHashTag);
+    checkHashTag();
+  })();
+</script>

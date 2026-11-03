@@ -2,6 +2,7 @@
 layout: post
 title: 米国LLC設立の経緯と州選び
 date: 2026-09-21
+tags: [LLC, AppleDeveloper, NewMexico]
 ---
 
 KANTO WORK LLC を設立した経緯と、設立先としてニューメキシコ州を選んだ理由についてまとめます。

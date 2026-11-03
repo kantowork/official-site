@@ -2,6 +2,7 @@
 layout: post
 title: "米国LLC設立：自力でIRSへEINを申請する手順（SS-4作成からFAX送信まで）"
 date: 2026-09-25
+tags: [LLC, EIN, IRS, FAX.PLUS]
 ---
 
 前回の記事に続き、今回はコストを抑えるために自力で行った **IRSへのEIN申請手順** について紹介します。
@@ -118,7 +119,7 @@ FAX番号（米国の番号）を取得・設定します。
 
 (2) SS-4 の Applicant's fax number に受信FAX番号を入力し、1ページのみのPDFを作成します
 
-(3) Articles of Organization, CERTIFICATE OF ORGANIZATION を結合したPDFを作成します
+(3) Articles of Organization, Certificate of Organization を結合したPDFを作成します
 
 - **送信先**: [IRSのサイトから最新の国外申請者の送信先を取得](https://www.irs.gov/instructions/iss4#en_US_202512_publink100036476)
   - `outside the United States` の箇所を参照
@@ -134,11 +135,11 @@ FAX番号（米国の番号）を取得・設定します。
 ## 4. 審査待ち
 
 FAX送信が完了したら、あとはIRS側の処理を待ちます。
-9/25 (金) に送信し、 10/9 (金) にFAXで返信がありました。通常、2〜4週間はかかるみたいです。
-その後、登録エージェントに郵送が届いた旨のメールがあり、スキャンされたPDFに以下が記載されています。
+9/25(金) に送信し、 10/9(金) にFAXで返信がありました。通常、2〜4週間はかかるみたいです。
+その後 10/23(金) に、登録エージェントから郵送が届いた旨のメールがありました。スキャンされたPDFに以下が記載されています。
 
 ```text
-September 14 2026
+Octover 14 2026
 We assigned you an employer identification number (EIN)
 Your EIN is 00-0000000. The name control associated with this EIN is ____.
 ```
@@ -147,7 +148,7 @@ Your EIN is 00-0000000. The name control associated with this EIN is ____.
 
 これで、手元には以下の重要書類が揃った状態になります：
 
-1. **Articles of Organization**
+1. **Articles of Organization** と **Certificate of Organization**
 2. **Operating Agreement**
 3. **EIN** と **name control**
 
