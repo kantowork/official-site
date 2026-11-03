@@ -2,7 +2,7 @@
 layout: post
 title: "米国LLC設立：Northwest Registered Agentを使った手順と設立完了まで"
 date: 2026-09-24
-tags: [LLC, Northwest, NewMexico]
+tags: [LLC]
 ---
 
 前回の記事に続き、今回は登録エージェントサービス **Northwest Registered Agent** を利用して実際に KANTO WORK LLC を設立した手順と期間をまとめます。

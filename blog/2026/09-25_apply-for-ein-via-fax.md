@@ -2,7 +2,7 @@
 layout: post
 title: "米国LLC設立：自力でIRSへEINを申請する手順（SS-4作成からFAX送信まで）"
 date: 2026-09-25
-tags: [LLC, EIN, IRS, FAX.PLUS]
+tags: [LLC]
 ---
 
 前回の記事に続き、今回はコストを抑えるために自力で行った **IRSへのEIN申請手順** について紹介します。
