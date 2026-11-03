@@ -1,0 +1,31 @@
+---
+layout: default
+title: ブログ
+permalink: /blog/
+---
+
+<section style="margin-top: 2rem; margin-bottom: 4rem;">
+  <hgroup>
+    <h1>Blog</h1>
+    <p>KANTO WORK LLC の開発状況や技術・お知らせを発信しています。</p>
+  </hgroup>
+
+  <ul class="blog-post-list">
+    {% assign blog_posts = site.pages | sort: "path" | reverse %}
+    {% for post in blog_posts %}
+      {% if post.path contains 'blog/' and post.path != 'blog/index.html' and post.title %}
+        <li class="blog-post-item">
+          <small class="blog-meta">📅 {{ post.date | date: "%Y年%m月%d日" }}</small>
+          <h3>
+            <a href="{{ post.url | relative_url }}">
+              {{ post.title | escape }}
+            </a>
+          </h3>
+          {% if post.description %}
+            <p class="blog-post-desc">{{ post.description }}</p>
+          {% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</section>

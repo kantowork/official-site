@@ -1,0 +1,11 @@
+title: "KANTO WORK LLC Blog"
+description: "KANTO WORK LLC の公式ブログです。"
+url: "https://www.kanto.work"
+baseurl: ""
+
+# GitHub Pages標準テーマ
+theme: minima
+
+# 除外設定
+exclude:
+  - README.md

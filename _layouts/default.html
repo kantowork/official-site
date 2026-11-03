@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description | escape }}{% else %}{{ site.description | escape }}{% endif %}">
+  <meta name="author" content="KANTO WORK LLC">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="500x500" href="/resources/top/favicon-500x500.png">
+  <link rel="apple-touch-icon" href="/resources/top/favicon-500x500.png">
+
+  <!-- Pico CSS (Jade) & Site Style -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css">
+  <link rel="stylesheet" href="/resources/top/style.css">
+
+  <style>
+    .blog-article {
+      margin-top: 2rem;
+      margin-bottom: 4rem;
+    }
+    .blog-meta {
+      color: var(--pico-muted-color);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .blog-article img {
+      border-radius: var(--pico-border-radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      margin: 1.5rem 0;
+      max-width: 100%;
+      height: auto;
+    }
+    .blog-post-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .blog-post-item {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--pico-muted-border-color);
+    }
+    .blog-post-item:last-child {
+      border-bottom: none;
+    }
+    .blog-post-item h3 {
+      margin-bottom: 0.25rem;
+    }
+    .blog-post-item h3 a {
+      text-decoration: none;
+    }
+    .blog-post-item h3 a:hover {
+      text-decoration: underline;
+    }
+    .blog-post-desc {
+      color: var(--pico-muted-color);
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+    }
+  </style>
+
+  <script src="/resources/top/site.js"></script>
+  <script src="/resources/top/switch-theme.js"></script>
+</head>
+
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <nav class="container">
+      <ul>
+        <li>
+          <a href="/" class="contrast brand-link">
+            <img src="/resources/top/favicon-500x500.png" alt="KANTO WORK LLC" width="28" height="28" class="brand-logo">
+            <strong>KANTO WORK LLC</strong>
+          </a>
+        </li>
+      </ul>
+      <ul>
+        <li><a href="/">Top</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li>
+          <a href="#" id="theme-toggle" class="contrast theme-toggle" aria-label="テーマ切り替え" title="テーマ切り替え">☀️</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    {{ content }}
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="container site-footer">
+    <small>© <span id="copyright-year">2026</span> KANTO WORK LLC. All rights reserved. &bull; <a href="/privacy.html"
+        class="secondary">プライバシーポリシー</a></small>
+  </footer>
+
+</body>
+
+</html>
+
