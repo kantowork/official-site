@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "米国LLC設立：自力でIRSへEINを申請する手順（SS-4作成からFAX送信まで）"
+title: "米国LLC設立：IRSへのEIN申請手順"
 date: 2026-09-25
-tags: [LLC]
+tags: [LLC, AppleDeveloper]
 ---
 
 前回の記事に続き、今回はコストを抑えるために自力で行った **IRSへのEIN申請手順** について紹介します。
@@ -45,7 +45,7 @@ PDFの各項目に記入していきます。PDFは直接編集ができます�
 - **Line 5a-5b**: 日本の住所
   - `#000, 1-1-1, SAMPLE-MACHI, SAMPLE-KU`
   - `SAMPLECITY, TOKYO 000-0000 JAPAN`
-- **Line 6**: エージェント住所の州と郡 ("County エージェント住所の市名"をWeb検索)
+- **Line 6**: エージェント住所の州と郡 ("County <エージェント住所の市名>" をGoogle検索)
   - `BERNALILLO COUNTRY, NEW MEXICO`
 - **Line 7a**: 氏名を名姓の順で
 - **Line 7b**: `foreign`
@@ -59,7 +59,7 @@ PDFの各項目に記入していきます。PDFは直接編集ができます�
 - **Line 9b**: 空欄
 - **Line 10**: 申請理由
   - `Start new business`
-  - (specify type) `Digital service` `Software development` `e-commerce` など
+  - (specify type) `Digital service`, `Software development`, `e-commerce` など
 - **Line 11**: 組織定款に記載の設立日
   - `mm/dd/yyyy`
 - **Line 12**: 決算締め月
@@ -69,7 +69,7 @@ PDFの各項目に記入していきます。PDFは直接編集ができます�
 - **Line 15**: `N/A`
 - **Line 16**: 主要な事業活動
   - `Other`
-  - (specify) `Digital service` `Software development` `e-commerce` など
+  - (specify) `Digital service`, `Software development`, `e-commerce` など
 - **Line 17**: 取り扱い品目
   - `Digital products`
 - **Line 18**: EIN の有無
