@@ -33,6 +33,10 @@
   }
 }
 
+html {
+  scroll-padding-top: 4.5rem;
+}
+
 /* Sticky Header */
 .site-header {
   position: sticky;
@@ -68,6 +72,10 @@
   text-decoration: none;
   font-size: 1.25rem;
   transition: font-size 0.25s ease;
+}
+
+.lang-switch {
+  font-weight: 600;
 }
 
 /* Scrolled (Slim Header) */
@@ -129,6 +137,20 @@ article p {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.card-title-link {
+  text-decoration: none;
+}
+
+.card-title-link:hover strong {
+  text-decoration: underline;
+}
+
+.card-action {
+  margin-bottom: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
 }
 
 .card-icon {

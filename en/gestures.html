@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kantowork Gestures | Lightweight Trackpad Gesture Tool for macOS</title>
+  <meta name="description"
+    content="Kantowork Gestures is a lightweight native macOS tool that recognizes 1- to 5-finger trackpad taps, swipes, and anchor taps with ultra-low latency and triggers any keyboard shortcut. Includes a 14-day free trial.">
+  <meta name="keywords"
+    content="Kantowork Gestures, macOS, trackpad, gesture, anchor tap, shortcut, multitouch, BetterTouchTool alternative, KANTO WORK LLC">
+  <meta name="author" content="KANTO WORK LLC">
+
+  <link rel="alternate" hreflang="ja" href="https://kanto.work/gestures.html">
+  <link rel="alternate" hreflang="en" href="https://kanto.work/en/gestures.html">
+  <link rel="alternate" hreflang="x-default" href="https://kanto.work/gestures.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kanto.work/en/gestures.html">
+  <meta property="og:title" content="Kantowork Gestures | Lightweight Trackpad Gesture Tool for macOS">
+  <meta property="og:description"
+    content="A native macOS app that turns 1- to 5-finger multitouch trackpad gestures into keyboard shortcuts with ultra-low latency. 14-day free trial, $5.99 one-time license.">
+
+  <link rel="icon" type="image/png" sizes="500x500" href="/resources/top/favicon-500x500.png">
+  <link rel="apple-touch-icon" href="/resources/top/favicon-500x500.png">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css">
+  <link rel="stylesheet" href="/resources/top/style.css">
+
+  <style>
+    .gestures-hero {
+      text-align: center;
+      padding: 3rem 0 2.25rem;
+    }
+
+    .gestures-hero-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .gestures-hero h1 {
+      margin-bottom: 0.65rem;
+    }
+
+    .gestures-hero-lead {
+      max-width: 680px;
+      margin: 0 auto 1.5rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--pico-muted-color);
+    }
+
+    .gestures-meta-badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .gestures-cta-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .gestures-cta-group a[role="button"] {
+      min-width: 230px;
+      font-weight: 600;
+    }
+
+    .gestures-cta-note {
+      font-size: 0.82rem;
+      color: var(--pico-muted-color);
+      margin-bottom: 0;
+    }
+
+    .gestures-section {
+      padding: 2rem 0;
+    }
+
+    .gestures-section hgroup {
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .feature-grid article {
+      margin-bottom: 0;
+      height: 100%;
+    }
+
+    .feature-title {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 1.02rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-emoji {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .pricing-card {
+      border: 1px solid color-mix(in srgb, var(--pico-primary) 40%, var(--pico-muted-border-color));
+    }
+
+    .price-headline {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-amount {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--pico-primary);
+    }
+
+    .spec-list {
+      margin: 0.75rem 0 0;
+      padding-left: 1.2rem;
+      font-size: 0.92rem;
+    }
+
+    .spec-list li {
+      margin-bottom: 0.4rem;
+    }
+
+    .steps-list {
+      padding-left: 1.25rem;
+      margin-bottom: 0;
+    }
+
+    .steps-list li {
+      margin-bottom: 0.75rem;
+      font-size: 0.94rem;
+      line-height: 1.65;
+    }
+
+    .steps-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout-note {
+      margin-top: 1rem;
+      padding: 0.9rem 1.1rem;
+      border-left: 3px solid var(--pico-primary);
+      background-color: color-mix(in srgb, var(--pico-primary) 8%, transparent);
+      border-radius: 0 var(--pico-border-radius) var(--pico-border-radius) 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .callout-note p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin: 0.4rem 0 0;
+    }
+
+    .callout-note ol {
+      margin: 0.55rem 0;
+      padding-left: 1.25rem;
+    }
+
+    .callout-note ol li {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin-bottom: 0.3rem;
+    }
+
+    .callout-note ol li:last-child {
+      margin-bottom: 0;
+    }
+
+    .gesture-table td:first-child {
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .faq-item summary {
+      font-weight: 600;
+    }
+
+    .faq-item p {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+  </style>
+
+  <script src="/resources/top/site.js"></script>
+  <script src="/resources/top/switch-theme.js"></script>
+</head>
+
+<body>
+
+  <!-- Header / Navigation (Sticky) -->
+  <header class="site-header">
+    <nav class="container">
+      <ul>
+        <li>
+          <a href="/en/" class="contrast brand-link">
+            <img src="/resources/top/favicon-500x500.png" alt="KANTO WORK LLC" width="28" height="28" class="brand-logo">
+            <strong>KANTO WORK LLC</strong>
+          </a>
+        </li>
+      </ul>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#gestures">Gestures</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#install">Install</a></li>
+        <li><a href="/en/">Top</a></li>
+        <li><a href="/gestures.html" class="secondary lang-switch" hreflang="ja" lang="ja">日本語</a></li>
+        <li>
+          <a href="#" id="theme-toggle" class="contrast theme-toggle" aria-label="Toggle theme" title="Toggle theme">☀️</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="gestures-hero">
+      <img src="/resources/top/gestures.icon.svg" alt="Kantowork Gestures Icon" class="gestures-hero-icon">
+      <h1>Kantowork Gestures</h1>
+      <p class="gestures-hero-lead">
+        An ultra-lightweight, low-latency native gesture tool for macOS that skips window management and macros to focus purely on <strong>converting trackpad actions into keyboard shortcuts</strong>.
+      </p>
+
+      <div class="gestures-meta-badges">
+        <span class="tag-badge">v1.0.0</span>
+        <span class="tag-badge">macOS 14.0+ (Apple Silicon)</span>
+        <span class="tag-badge">14-Day Full-Feature Free Trial</span>
+        <span class="tag-badge">One-time $5.99</span>
+      </div>
+
+      <div class="gestures-cta-group">
+        <a href="https://github.com/kantowork/official-site/releases/download/gestures-v1.0.0/KantoworkGestures-1.0.0.dmg" role="button" download>
+          Download DMG (v1.0.0)
+        </a>
+        <a href="https://buy.polar.sh/polar_cl_lM0xNy0DHj7LEqiUs5L6Kr4avv5dbA9T5g0lY4I7H1U" role="button" class="secondary outline" target="_blank" rel="noopener noreferrer">
+          Buy Lifetime License ($5.99)
+        </a>
+      </div>
+      <p class="gestures-cta-note">
+        Try every feature free for 14 days after installation—no account or credit card required.
+      </p>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="gestures-section">
+      <hgroup>
+        <h2>Key Features</h2>
+        <p>Only what you need, at native speed.</p>
+      </hgroup>
+
+      <div class="feature-grid">
+        <article>
+          <div class="feature-title">
+            <span class="feature-emoji">🚀</span>
+            <strong>Ultra-Lightweight, Low-Latency Native Engine</strong>
+          </div>
+          <p>
+            Built with Swift and AppKit, connecting directly to macOS multitouch foundations. Runs quietly in the background with minimal memory and CPU usage, responding instantly to your fingers.
+          </p>
+        </article>
+
+        <article>
+          <div class="feature-title">
+            <span class="feature-emoji">🖐️</span>
+            <strong>1–5 Finger Gestures &amp; Anchor Taps</strong>
+          </div>
+          <p>
+            Supports 35 gesture types including taps, double/triple taps, swipes, pinches, and "anchor taps"—where you keep one finger resting and lightly tap with another.
+          </p>
+        </article>
+
+        <article>
+          <div class="feature-title">
+            <span class="feature-emoji">📱</span>
+            <strong>Per-App Custom Rules</strong>
+          </div>
+          <p>
+            Alongside global hooks across all apps, assign highest-priority shortcuts tailored to any running app or any app chosen from <code>/Applications</code>.
+          </p>
+        </article>
+
+        <article>
+          <div class="feature-title">
+            <span class="feature-emoji">🎯</span>
+            <strong>Real-Time Test &amp; Threshold Tuning</strong>
+          </div>
+          <p>
+            Inspect finger counts, recognized gestures, and fired shortcuts live in the "Real-Time Test" tab. Fine-tune tap wait times and movement tolerances to match your feel.
+          </p>
+        </article>
+
+        <article>
+          <div class="feature-title">
+            <span class="feature-emoji">⚠️</span>
+            <strong>System Gesture Conflict Detection</strong>
+          </div>
+          <p>
+            Clearly flags gestures in the UI that may conflict with built-in macOS trackpad settings so you can customize comfortably without accidental triggers.
+          </p>
+        </article>
+
+        <article>
+          <div class="feature-title">
+            <span class="feature-emoji">🌍</span>
+            <strong>Menu Bar Resident &amp; Bilingual UI</strong>
+          </div>
+          <p>
+            Stays neatly in the top-right menu bar without occupying the Dock, with light/dark-mode adaptive icons and one-click switching between English and Japanese in Settings.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Supported Gestures -->
+    <section id="gestures" class="gestures-section">
+      <hgroup>
+        <h2>Supported Gestures (35 Total)</h2>
+        <p>Assign your favorite 1- to 5-finger trackpad actions to any shortcut.</p>
+      </hgroup>
+
+      <div class="overflow-auto">
+        <table class="striped gesture-table">
+          <thead>
+            <tr>
+              <th scope="col">Fingers</th>
+              <th scope="col">Supported Gestures</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1 Finger</td>
+              <td>Tap / Double Tap / Triple Tap</td>
+            </tr>
+            <tr>
+              <td>2 Fingers</td>
+              <td>Tap / Double Tap / Triple Tap / Swipe (Up, Down, Left, Right) / Anchor Tap (Left, Right) / Pinch In, Pinch Out</td>
+            </tr>
+            <tr>
+              <td>3 Fingers</td>
+              <td>Tap / Double Tap / Triple Tap / Swipe (Up, Down, Left, Right) / Anchor Tap (Left, Center, Right)</td>
+            </tr>
+            <tr>
+              <td>4 Fingers</td>
+              <td>Tap / Double Tap / Triple Tap / Swipe (Up, Down, Left, Right) / Anchor Tap (Left, Right)</td>
+            </tr>
+            <tr>
+              <td>5 Fingers</td>
+              <td>Tap / Pinch In / Pinch Out</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Trial & License -->
+    <section id="pricing" class="gestures-section">
+      <hgroup>
+        <h2>Pricing &amp; Licensing</h2>
+        <p>Start with a 14-day free trial and experience every feature firsthand.</p>
+      </hgroup>
+
+      <div class="grid">
+        <article>
+          <header>
+            <div class="card-header-top">
+              <strong>14-Day Full-Feature Free Trial</strong>
+              <small><mark>Free Trial</mark></small>
+            </div>
+          </header>
+          <div class="price-headline">
+            <span class="price-amount">$0</span>
+            <small>14 days &bull; No credit card required</small>
+          </div>
+          <ul class="spec-list">
+            <li>Full access to all gestures and per-app rules with no limitations</li>
+            <li>Even after the trial ends, the app still opens so you can view or back up your settings</li>
+            <li>Resume immediately without restarting as soon as you enter a license key</li>
+          </ul>
+        </article>
+
+        <article class="pricing-card">
+          <header>
+            <div class="card-header-top">
+              <strong>Lifetime License</strong>
+              <small><mark>One-time</mark></small>
+            </div>
+          </header>
+          <div class="price-headline">
+            <span class="price-amount">$5.99</span>
+            <small>Pay once, use forever (no subscription)</small>
+          </div>
+          <ul class="spec-list">
+            <li>Activate on up to <strong>3 Macs</strong> per license (deactivate anytime in-app or via the customer portal)</li>
+            <li>Runs <strong>indefinitely offline</strong> after initial activation</li>
+            <li>Instant license key delivery from Polar.sh right after checkout</li>
+          </ul>
+          <footer>
+            <a href="https://buy.polar.sh/polar_cl_lM0xNy0DHj7LEqiUs5L6Kr4avv5dbA9T5g0lY4I7H1U" role="button" target="_blank" rel="noopener noreferrer" style="width: 100%;">
+              Buy License ($5.99)
+            </a>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <!-- Installation & Setup -->
+    <section id="install" class="gestures-section">
+      <hgroup>
+        <h2>Installation &amp; Setup</h2>
+        <p>Get up and running in about a minute.</p>
+      </hgroup>
+
+      <article>
+        <ol class="steps-list">
+          <li>
+            <strong>Download and install the DMG</strong><br>
+            Open <a href="https://github.com/kantowork/official-site/releases/download/gestures-v1.0.0/KantoworkGestures-1.0.0.dmg" download><code>KantoworkGestures-1.0.0.dmg</code></a> and drag &amp; drop <strong>Kantowork Gestures.app</strong> into your <strong>Applications</strong> folder.
+          </li>
+          <li>
+            <strong>Launch the app</strong><br>
+            Open <strong>Kantowork Gestures</strong> from Applications. A trackpad icon will appear in the top-right menu bar. (If macOS displays a security warning on first launch, follow the guide below to allow it.)
+          </li>
+          <li>
+            <strong>Grant Accessibility permission</strong><br>
+            To send keyboard shortcuts, follow the first-launch prompt and turn on Kantowork Gestures under <strong>System Settings &gt; Privacy &amp; Security &gt; Accessibility</strong>.
+          </li>
+          <li>
+            <strong>Register your gestures</strong><br>
+            Click the menu bar icon and select "Open Settings... (<code>Cmd + ,</code>)" to assign shortcuts to global or per-app gestures.
+          </li>
+        </ol>
+
+        <div id="gatekeeper-guide" class="callout-note">
+          <strong>If macOS blocks the app with a security warning on first launch:</strong>
+          <p>
+            Because this build is currently distributed with ad-hoc signing (not notarized), macOS may block launch with “<strong>Apple could not verify “Kantowork Gestures” is free of malware that may harm your Mac or compromise your privacy.</strong>” (or “cannot be opened because the developer cannot be verified”). Since Right-click &gt; Open is no longer available in macOS Sequoia (15) and later, allow the app using these steps:
+          </p>
+          <ol>
+            <li>Click <strong>Done</strong> to close the warning dialog (do <strong>not</strong> click “Move to Trash”).</li>
+            <li>Open <strong>System Settings &gt; Privacy &amp; Security</strong>.</li>
+            <li>Scroll down to the <strong>Security</strong> section, click <strong>Open Anyway</strong> next to “<code>Kantowork Gestures</code> was blocked to protect your Mac”, and authenticate with your password or Touch ID.</li>
+            <li>When the confirmation dialog appears again, click <strong>Open Anyway</strong> to launch the app.</li>
+          </ol>
+          <p>
+            Note: On macOS 14 (Sonoma) or earlier, you can also right-click (Control + click) the app and choose “Open”. Advanced users or developers can alternatively remove the quarantine attribute in Terminal by running <code>xattr -dr com.apple.quarantine "/Applications/Kantowork Gestures.app"</code>.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Specs & FAQ -->
+    <section class="gestures-section">
+      <hgroup>
+        <h2>System Requirements &amp; FAQ</h2>
+      </hgroup>
+
+      <div class="overflow-auto" style="margin-bottom: 1.5rem;">
+        <table class="striped">
+          <tbody>
+            <tr>
+              <th scope="row">Latest Version</th>
+              <td><strong>v1.0.0</strong> (<a href="https://github.com/kantowork/official-site/releases/download/gestures-v1.0.0/KantoworkGestures-1.0.0.dmg" download>KantoworkGestures-1.0.0.dmg</a>)</td>
+            </tr>
+            <tr>
+              <th scope="row">Supported OS</th>
+              <td>macOS 14.0 (Sonoma) or later</td>
+            </tr>
+            <tr>
+              <th scope="row">Supported Hardware</th>
+              <td>Apple Silicon Mac (built-in trackpad / Apple Magic Trackpad)</td>
+            </tr>
+            <tr>
+              <th scope="row">License Management</th>
+              <td>Polar.sh (manage receipts and registered devices via the <a href="https://polar.sh/purchases" target="_blank" rel="noopener noreferrer">Customer Portal</a>)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <details class="faq-item">
+        <summary>I see “Apple could not verify ‘Kantowork Gestures’ is free of malware…” and cannot open the app.</summary>
+        <p>Because the current build uses ad-hoc signing (not notarized), macOS Sequoia (15) and later display a Gatekeeper warning on first launch. Click <strong>Done</strong> on the dialog, then open <strong>System Settings &gt; Privacy &amp; Security</strong> and click <strong>Open Anyway</strong> at the bottom. See the <a href="#gatekeeper-guide">first-launch guide above</a> for full steps (or run <code>xattr -dr com.apple.quarantine "/Applications/Kantowork Gestures.app"</code> in Terminal).</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I transfer my license to a new Mac?</summary>
+        <p>Yes. Click "Deactivate This Mac" in the app's "🔑 License" tab, or remove the old Mac from the Polar Customer Portal, then reuse the same license key on your new Mac.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I use it offline (e.g., Airplane Mode)?</summary>
+        <p>Yes. Once license activation is complete, you can continue using it offline without any restrictions.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Where is the configuration file saved?</summary>
+        <p>You can view and directly edit it from the "Open Config File (config.json)" button in the "⚙️ Settings" tab. Trial and license state are stored securely encrypted with a device-specific key.</p>
+      </details>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="container site-footer">
+    <small>© <span id="copyright-year">2026</span> KANTO WORK LLC. All rights reserved. &bull; <a href="/privacy.html"
+        class="secondary">Privacy Policy</a> &bull; <a href="/en/" class="secondary">Back to Top</a></small>
+  </footer>
+
+</body>
+
+</html>
