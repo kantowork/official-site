@@ -52,20 +52,116 @@ html {
 }
 
 /* Brand & Navigation */
+.site-header nav {
+  gap: 0.5rem;
+}
+
 .brand-link {
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  white-space: nowrap;
 }
 
 .brand-logo {
   border-radius: var(--pico-border-radius);
+  flex-shrink: 0;
   transition: width 0.25s ease, height 0.25s ease;
 }
 
 .brand-link strong {
   transition: font-size 0.25s ease;
+}
+
+.nav-end {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.site-header .nav-end ul {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.site-header .nav-utilities {
+  margin-right: calc(var(--pico-nav-element-spacing-horizontal) * -1);
+}
+
+.nav-menu a,
+.nav-utilities a {
+  white-space: nowrap;
+}
+
+.nav-toggle-item {
+  display: none;
+}
+
+.site-header nav li .nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: var(--pico-border-radius);
+  background-color: transparent;
+  color: var(--pico-color);
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.site-header nav li .nav-toggle:hover,
+.site-header nav li .nav-toggle:focus-visible {
+  background-color: color-mix(in srgb, var(--pico-primary) 12%, transparent);
+  border-color: var(--pico-primary);
+}
+
+.nav-toggle-icon,
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+  display: block;
+  width: 1.05rem;
+  height: 2px;
+  border-radius: 1px;
+  background-color: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-toggle-icon {
+  position: relative;
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle-icon::before {
+  top: -5px;
+}
+
+.nav-toggle-icon::after {
+  top: 5px;
+}
+
+.site-header.menu-open .nav-toggle-icon {
+  background-color: transparent;
+}
+
+.site-header.menu-open .nav-toggle-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.site-header.menu-open .nav-toggle-icon::after {
+  top: 0;
+  transform: rotate(-45deg);
 }
 
 .theme-toggle {
@@ -76,6 +172,85 @@ html {
 
 .lang-switch {
   font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .site-header {
+    --pico-nav-element-spacing-horizontal: 0.45rem;
+    --pico-nav-element-spacing-vertical: 0.55rem;
+    --pico-nav-link-spacing-vertical: 0.35rem;
+  }
+
+  .nav-toggle-item {
+    display: inline-block;
+  }
+
+  .site-header .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: var(--pico-background-color);
+    border-bottom: 1px solid var(--pico-muted-border-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    padding: 0.5rem var(--pico-spacing);
+    z-index: 99;
+  }
+
+  .site-header.menu-open .nav-menu {
+    display: flex;
+  }
+
+  .site-header .nav-menu li {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+
+  .site-header .nav-menu li a {
+    display: block;
+    padding: 0.65rem 0.75rem;
+    margin: 0;
+    font-size: 0.95rem;
+    border-radius: var(--pico-border-radius);
+  }
+
+  .site-header .nav-menu li a:hover,
+  .site-header .nav-menu li a:focus-visible {
+    background-color: color-mix(in srgb, var(--pico-primary) 12%, transparent);
+  }
+}
+
+@media (max-width: 390px) {
+  .site-header {
+    --pico-nav-element-spacing-horizontal: 0.35rem;
+  }
+
+  .brand-logo {
+    width: 24px;
+    height: 24px;
+  }
+
+  .brand-link strong {
+    font-size: 0.88rem;
+  }
+
+  .lang-switch {
+    font-size: 0.88rem;
+  }
+
+  .theme-toggle {
+    font-size: 1.1rem;
+  }
+
+  .site-header nav li .nav-toggle {
+    width: 2rem;
+    height: 2rem;
+  }
 }
 
 /* Scrolled (Slim Header) */
